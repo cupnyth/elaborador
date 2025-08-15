@@ -1,0 +1,16 @@
+[project]
+name = "elaborador"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flet[all]>=0.70.0.dev0",
+    "pillow>=11.3.0",
+    "psycopg2-binary>=2.9.10",
+    "pyinstaller>=6.15.0",
+    "pymupdf>=1.26.3",
+    "pywin32>=311",
+    "reportlab>=4.4.3",
+    "sqlalchemy>=2.0.42",
+]
