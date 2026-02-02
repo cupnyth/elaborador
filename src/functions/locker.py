@@ -1,5 +1,6 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from src.db.db_controler import Database
 import os
 
 # Importa o cérebro do Excel que acabamos de arrumar
@@ -8,6 +9,7 @@ from relations.functions import ExcelProtocol
 class Locker:
     def __init__(self):
         self.exames_path = "exames"
+        self.db = Database()
 
     def create_exam(self, enterprise: str, colaborator: str, exams: list, passw: str, cpf: str = ""):
         print(f"[LOCKER] Iniciando processo para: {colaborator}")
@@ -27,6 +29,13 @@ class Locker:
             c.save()
             print("[LOCKER] PDF Gerado com sucesso.")
             # ----------------------------------
+            caminho_final_pdf = os.path.abspath(caminho_pdf)
+
+            self.db.concluir_exame(
+                nome_paciente=colaborator,
+                nome_empresa=enterprise,
+                caminho_pdf=caminho_final_pdf
+            )
 
             # --- 2. GATILHO DO EXCEL (INTELIGENTE) ---
             # Se o CPF foi preenchido, o sistema entende que precisa gerar protocolo

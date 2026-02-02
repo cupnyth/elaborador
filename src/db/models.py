@@ -14,3 +14,13 @@ class Empresa(Base):
     endereco = Column(Text)
     municipio = Column(Text)
     criado_em = Column(TIMESTAMP, default=func.now())
+
+class Pending(Base):
+    # O nome da tabela no banco do Portal é 'pending'
+    __tablename__ = 'pending'
+    
+    id = Column(Integer, primary_key=True)
+    paciente_id = Column(Integer) # Não precisamos da Relation completa aqui, só o ID resolve
+    tipo_exame = Column(String)
+    status = Column(String) # Vamos escrever "Concluido" aqui
+    link_pdf = Column(String)
